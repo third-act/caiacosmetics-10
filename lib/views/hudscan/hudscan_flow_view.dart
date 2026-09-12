@@ -106,7 +106,7 @@ class HudscanHomeView extends StatelessWidget {
                   child: Column(
                     children: [
                       _FaceOval(
-                        imageAsset: 'assets/images/hem_lifestyle_face.jpg',
+                        imageAsset: 'assets/images/hudscan_face.jpg',
                         size: 180,
                       ),
                       const SizedBox(height: AppSpace.lg),
@@ -302,7 +302,7 @@ class _FaceOval extends StatelessWidget {
       child: Image.asset(
         imageAsset,
         fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
+        alignment: const Alignment(0, -0.25),
       ),
     );
   }
