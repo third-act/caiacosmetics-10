@@ -7,6 +7,7 @@ import '../../ui/common/app_colors.dart';
 import '../../ui/common/app_haptics.dart';
 import '../../ui/common/app_radius.dart';
 import '../../ui/common/app_space.dart';
+import '../../ui/common/tab_shell.dart';
 import '../../ui/shared_widgets/pressable_card.dart';
 import '../../ui/shared_widgets/section_header.dart';
 import '../../viewmodels/hudscan_viewmodel.dart';
@@ -172,11 +173,11 @@ class HudscanHomeView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: AppSpace.xxl),
               ],
             ),
           ),
         ),
+        tabScrollBottomInset,
       ],
     );
   }
@@ -257,6 +258,7 @@ class _HudscanScanViewState extends State<HudscanScanView> {
                   'Analyserar fukt, jämnhet och röda toner',
                   style: TextStyle(color: AppColors.inkMuted.withValues(alpha: 1)),
                 ),
+                const SizedBox(height: kTabContentPadding),
               ],
             ),
           ),
@@ -425,11 +427,11 @@ class HudscanResultatView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: AppSpace.xxl),
               ],
             ),
           ),
         ),
+        tabScrollBottomInset,
       ],
     );
   }
@@ -640,11 +642,11 @@ class HudscanRekommendationerView extends StatelessWidget {
                   onTap: () => onProductTap(MockDataService.recommendations[i]),
                   ),
                 ],
-                const SizedBox(height: AppSpace.xxl),
               ],
             ),
           ),
         ),
+        tabScrollBottomInset,
       ],
     );
   }

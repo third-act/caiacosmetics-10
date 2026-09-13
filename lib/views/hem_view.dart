@@ -8,7 +8,9 @@ import '../ui/common/app_haptics.dart';
 import '../ui/common/app_radius.dart';
 import '../ui/common/app_shadows.dart';
 import '../ui/common/app_space.dart';
+import '../ui/common/tab_shell.dart';
 import '../ui/shared_widgets/pressable_card.dart';
+import '../ui/shared_widgets/scrim_image.dart';
 import '../ui/shared_widgets/section_header.dart';
 import '../ui/shared_widgets/snap_carousel.dart';
 import 'widgets/caia_header.dart';
@@ -71,6 +73,8 @@ class HemView extends StatelessWidget {
                 const SectionHeader(title: 'Populärt just nu'),
                 const SizedBox(height: AppSpace.lg),
                 SnapCarousel(
+                  height: 228,
+                  shadowClearance: 24,
                   itemCount: MockDataService.forDigProducts.length,
                   itemBuilder: (context, index) {
                     final product = MockDataService.forDigProducts[index];
@@ -86,11 +90,11 @@ class HemView extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpace.section),
                 _EditorialHero(),
-                const SizedBox(height: AppSpace.xxl),
               ],
             ),
           ),
         ),
+        tabScrollBottomInset,
       ],
     );
   }
@@ -296,40 +300,28 @@ class _EditorialHero extends StatelessWidget {
         boxShadow: AppShadows.cardShadow,
       ),
       clipBehavior: Clip.antiAlias,
-      child: Stack(
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Image.asset(
-              'assets/images/hem_hero_wakemeup.jpg',
-              fit: BoxFit.cover,
-            ),
+      child: ScrimImage(
+        imageAsset: 'assets/images/hem_hero_wakemeup.jpg',
+        aspectRatio: 16 / 9,
+        overlay: Positioned(
+          left: AppSpace.lg,
+          bottom: AppSpace.lg,
+          right: AppSpace.lg,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Wake Me Up',
+                style: onImageTitleStyle(context),
+              ),
+              const SizedBox(height: AppSpace.xs),
+              Text(
+                'Din shortcut till en utvilad, strålande look.',
+                style: onImageBodyStyle(context),
+              ),
+            ],
           ),
-          Positioned(
-            left: AppSpace.lg,
-            bottom: AppSpace.lg,
-            right: AppSpace.lg,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Wake Me Up',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                ),
-                const SizedBox(height: AppSpace.xs),
-                Text(
-                  'Din shortcut till en utvilad, strålande look.',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.9),
-                      ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
