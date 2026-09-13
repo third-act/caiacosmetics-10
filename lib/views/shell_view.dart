@@ -13,8 +13,6 @@ import 'hudscan/hudscan_flow_view.dart';
 import 'mina_view.dart';
 import 'produkt_detalj_view.dart';
 
-const _tabContentPadding = 128.0;
-
 class ShellView extends StatefulWidget {
   const ShellView({
     super.key,
@@ -71,31 +69,19 @@ class _ShellViewState extends State<ShellView> {
           body: IndexedStack(
             index: tab.index,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: _tabContentPadding),
-                child: HemView(
-                  onScanAgain: () => _openHudscan(startScan: true),
-                  onOpenHudscan: () => _openHudscan(),
+              HemView(
+                onScanAgain: () => _openHudscan(startScan: true),
+                onOpenHudscan: () => _openHudscan(),
+              ),
+              ListenableBuilder(
+                listenable: _hudscanViewModel,
+                builder: (context, _) => HudscanFlowView(
+                  viewModel: _hudscanViewModel,
+                  onProductSelected: _openProduct,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: _tabContentPadding),
-                child: ListenableBuilder(
-                  listenable: _hudscanViewModel,
-                  builder: (context, _) => HudscanFlowView(
-                    viewModel: _hudscanViewModel,
-                    onProductSelected: _openProduct,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: _tabContentPadding),
-                child: ForDigView(onProductTap: _openProduct),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: _tabContentPadding),
-                child: const MinaView(),
-              ),
+              ForDigView(onProductTap: _openProduct),
+              const MinaView(),
             ],
           ),
           bottomNavigationBar: Padding(

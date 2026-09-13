@@ -14,8 +14,8 @@ class SnapCarousel extends StatefulWidget {
     required this.itemCount,
     required this.itemBuilder,
     this.viewportFraction = 0.82,
-    this.height = 220,
-    this.shadowClearance = 16,
+    this.height = 228,
+    this.shadowClearance = 24,
     this.onPageChanged,
   });
 
@@ -61,29 +61,31 @@ class _SnapCarouselState extends State<SnapCarousel> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: widget.height + widget.shadowClearance,
-          child: PageView.builder(
-            controller: _controller,
-            padEnds: true,
-            clipBehavior: Clip.none,
-            itemCount: widget.itemCount,
-            onPageChanged: _onPageChanged,
-            itemBuilder: (context, i) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(
-                  AppSpace.sm,
-                  0,
-                  AppSpace.sm,
-                  widget.shadowClearance,
-                ),
-                child: ColoredBox(
-                  color: AppColors.bg,
-                  child: widget.itemBuilder(context, i) ??
-                      const SizedBox.shrink(),
-                ),
-              );
-            },
+        ClipRect(
+          child: SizedBox(
+            height: widget.height + widget.shadowClearance,
+            child: PageView.builder(
+              controller: _controller,
+              padEnds: true,
+              clipBehavior: Clip.hardEdge,
+              itemCount: widget.itemCount,
+              onPageChanged: _onPageChanged,
+              itemBuilder: (context, i) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    AppSpace.sm,
+                    0,
+                    AppSpace.sm,
+                    widget.shadowClearance,
+                  ),
+                  child: ColoredBox(
+                    color: AppColors.bg,
+                    child: widget.itemBuilder(context, i) ??
+                        const SizedBox.shrink(),
+                  ),
+                );
+              },
+            ),
           ),
         ),
         const SizedBox(height: AppSpace.md),

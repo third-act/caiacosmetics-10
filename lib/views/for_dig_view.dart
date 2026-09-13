@@ -6,6 +6,7 @@ import '../ui/common/app_colors.dart';
 import '../ui/common/app_radius.dart';
 import '../ui/common/app_shadows.dart';
 import '../ui/common/app_space.dart';
+import '../ui/common/tab_shell.dart';
 import '../ui/shared_widgets/pressable_card.dart';
 import '../ui/shared_widgets/section_header.dart';
 import 'widgets/caia_header.dart';
@@ -116,11 +117,11 @@ class ForDigView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: AppSpace.xxl),
               ],
             ),
           ),
         ),
+        tabScrollBottomInset,
       ],
     );
   }
